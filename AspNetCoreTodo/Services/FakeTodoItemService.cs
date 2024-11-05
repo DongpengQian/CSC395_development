@@ -20,6 +20,11 @@ namespace AspNetCoreTodo.Services
                 Title = "Build awesome apps",
                 DueAt = DateTimeOffset.Now.AddDays(2)
             };
+            var item3 = new TodoItem
+            {
+                Title = "Cook dinner",
+                DueAt = DateTimeOffset.Now.AddHours(3)
+            };
 
             return Task.FromResult(new[] { item1, item2 });
         }
