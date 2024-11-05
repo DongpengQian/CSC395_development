@@ -26,7 +26,7 @@ namespace AspNetCoreTodo.Services
                 DueAt = DateTimeOffset.Now.AddHours(3)
             };
 
-            return Task.FromResult(new[] { item1, item2 });
+            return Task.FromResult(new[] { item1, item2, item3});
         }
     }
 }
