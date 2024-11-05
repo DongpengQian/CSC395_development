@@ -15,13 +15,32 @@ public class TodoController : Controller
 
     public async Task<IActionResult> Index()
     {
-    var items = await _todoItemService.GetIncompleteItemsAsync();
+        var items = await _todoItemService.GetIncompleteItemsAsync();
 
-    var model = new TodoViewModel()
-    {
-        Items = items
-    };
+        var model = new TodoViewModel()
+        {
+            Items = items
+        };
 
-    return View(model);
+        return View(model);
     }
+
+    public async Task<IActionResult> AddItem(TodoItem newItem)
+    {
+        if (!ModelState.IsValid)
+        {
+            return RedirectToAction("Index");
+        }
+
+        var successful = await _todoItemService.AddItemAsync(newItem);
+        if (!successful)
+        {
+            return BadRequest("Could not add item.");
+        }
+
+        return RedirectToAction(nameof(Index));
+    }
+
+
+
 }   
